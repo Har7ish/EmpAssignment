@@ -1,0 +1,49 @@
+<div class="container-fluid">
+    <h2>Add Employee</h2>
+    <form [formGroup]="employeeForm" (ngSubmit)="onSubmit(employeeForm)">
+
+      <label>ID</label>
+      <input type="text" [class.is-invalid]="id.invalid && id.touched" 
+      formControlName="id" class="form-control">
+          <div *ngIf="id.touched && id.errors">
+            <div class="alert alert-danger" *ngIf="id.errors.required">id is required</div>
+            <div class="alert alert-danger" *ngIf="id.errors.pattern">id must be numbers</div>
+          </div>
+      
+        <label>First Name</label>
+        <input type="text" [class.is-invalid]="firstName.invalid && firstName.touched" 
+        formControlName="firstName" class="form-control">
+            <div *ngIf="firstName.errors && firstName.touched">
+              <div class="alert alert-danger" *ngIf="firstName.errors?.required">First Name is required</div>
+              <div class="alert alert-danger" *ngIf="firstName.errors?.minlength">First Name must be at least 3 characters</div>
+            </div>
+  
+        <label>Last Name</label>
+        <input type="text" [class.is-invalid]="lastName.invalid && lastName.touched" 
+        formControlName="lastName" class="form-control">
+            <div *ngIf="lastName.errors && lastName.touched">
+              <div class="alert alert-danger" *ngIf="lastName.errors?.required">Last Name is required</div>
+              <div class="alert alert-danger" *ngIf="lastName.errors?.minlength">Last Name must be at least 3 characters</div>
+            </div>
+  
+        <label>Salary</label>
+        <input type="text" [class.is-invalid]="salary.invalid && salary.touched" 
+        formControlName="salary" class="form-control">
+            <div *ngIf="salary.touched && salary.errors">
+              <div class="alert alert-danger" *ngIf="salary.errors.required">Salary is required</div>
+              <div class="alert alert-danger" *ngIf="salary.errors.max">Salary must be less than $10000000</div>
+            </div>
+            
+            <label>Department</label>
+            <input type="text" [class.is-invalid]="dept.invalid && dept.touched" 
+            formControlName="dept" class="form-control">
+                <div *ngIf="dept.errors && dept.touched">
+                  <div class="alert alert-danger" *ngIf="dept.errors?.required">Department is required</div>
+                  <div class="alert alert-danger" *ngIf="dept.errors?.minlength">Department must be at least 3 characters</div>
+                </div><br>
+       <button class="btn btn-primary" [disabled]="!employeeForm.valid" type="submit">Submit form</button>
+  
+   
+    </form>
+  </div>
+  
